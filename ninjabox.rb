@@ -1,6 +1,5 @@
 #!/usr/bin/ruby
 
-require 'optparse'
 require 'readline'
 
 
@@ -55,22 +54,7 @@ def loadscripts()
 end
 
 
-OptionParser.new { |opts|
-  opts.banner = "Usage: #{File.basename($0)} -u -i -s filename"
 
-  opts.on( '-l', '--list [type]', 'List script for a challenges\' cathegorie') do |type|
-    list(type)
-    exit
-  end
-
-  opts.on('-v', '--version', 'Show Ninja B0x version') do
-    version()
-    exit
-  end
-
-  
- 
-}.parse!
 
 
 
