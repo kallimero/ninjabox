@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 require 'readline'
-
+require "open-uri"
 
 trap('INT', 'SIG_IGN') # trololo (:
 
@@ -19,6 +19,12 @@ def list(type)
 	else
 		puts "==> #{type} don't exist. Check your args." 
 	end
+end
+
+
+def maj()
+
+
 end
 
 def version()
@@ -48,16 +54,8 @@ def loadscripts()
 			print "."
 		end
 	end
-	print "\n"
-	
-			
+	print "\n"			
 end
-
-
-
-
-
-
 
 	puts "\n   ----------------------------"
 	puts "   .:: Welcome on ninja Box ::."
@@ -73,10 +71,10 @@ end
 	while continue
 	
 	commandes = [
-	'use', 'open',
+	'open', 'version',
 	'help', 'quit',
-	'set', 'print', 'clear',
-	'list', 'reload', 'version'
+	'set', 'print', 'sh',
+	'list', 'reload', 'clear'
 	].sort
 
 	comp = proc { |s| commandes.grep( /^#{Regexp.escape(s)}/ ) }
@@ -89,6 +87,8 @@ end
 	Readline::HISTORY.push(command)
 	
 		case command
+		
+			
 		
 			when /^help ?$/, /^h$/
 				help()
@@ -124,7 +124,7 @@ end
 					puts "Unknown variable."
 				else puts "$" + $1 + " = " + ENV[$1] end
 			
-			when /^use ([0-9]+)$/
+			when /^open ([0-9]+)$/
 				puts "Executing #{@tab[$1.to_i]} ..."
 				system(@tab[$1.to_i])
 				
